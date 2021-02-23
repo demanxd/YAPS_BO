@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://Actor.gd"
+}, {
+"base": "Actor",
+"class": "Player",
+"language": "GDScript",
+"path": "res://aux_tscn/Player.gd"
+} ]
+_global_script_class_icons={
+"Actor": "",
+"Player": ""
+}
+
+[application]
+
+config/name="Block Out"
+run/main_scene="res://tscn_folders/Tavern.tscn"
+config/icon="res://icon.png"
+
+[layer_names]
+
+2d_physics/layer_1="Main Character"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Friend"
+2d_physics/layer_4="Neutral"
+2d_physics/layer_6="Whall"
+"2d_physics/Main Character"=false
+2d_physics/Main_Character=false
+
+[physics]
+
+2d/physics_engine="GodotPhysics"
+2d/cell_size=20
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
+
+[world]
+
+2d/cell_size=20
