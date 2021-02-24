@@ -40,10 +40,10 @@ func _ready():
 #   you can easily move individual functions.
 func _physics_process(_delta):
 	if is_movable:
-		if Input.get_action_strength("run"):
-			is_run = true
-		else:
-			is_run = false
+#		if Input.get_action_strength("run"):
+#			is_run = true
+#		else:
+#			is_run = false
 		
 		var direction = get_direction()
 	
