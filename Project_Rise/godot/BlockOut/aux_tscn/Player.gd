@@ -110,4 +110,8 @@ func set_camera_limits(x_left, x_right, y_top, y_bottom):
 	camera.limit_left   = x_left
 	camera.limit_right  = x_right
 	camera.limit_bottom = y_bottom
-	pass
+
+
+func immediatly_move(new_posi: Vector2):
+	self.position.x = new_posi.x
+	self.position.y = new_posi.y
