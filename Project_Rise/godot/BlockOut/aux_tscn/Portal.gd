@@ -20,6 +20,12 @@ func _ready():
 	$Sprite_In.hide()
 	
 	if !debug:
+		if self.get_parent().name.begins_with("Portal"):
+			self.In = true
+			color_shade = self.get_parent().get_color()
+			location_self = self.get_parent().get_location_target()
+		else:
+			self.In = false
 		if In:
 			$Sprite_In.show()
 			color_shade = Color(base_color.x,base_color.y,base_color.z)
@@ -30,12 +36,17 @@ func _ready():
 
 
 func _process(delta: float) -> void:
-	location_self = Vector2(self.position.x, self.position.y) 
 	if debug:
+		if self.get_parent().name.begins_with("Portal"):
+			self.In = true
+			color_shade = self.get_parent().get_color()
+			location_target = self.get_parent().get_location_target()
+		else:
+			self.In = false
 		if In:
 			$Sprite_Out.hide()
 			$Sprite_In.show()
-			color_shade = Color(base_color.x,base_color.y,base_color.z)
+#			color_shade = Color(base_color.x,base_color.y,base_color.z)
 			$Sprite_In.modulate = color_shade
 		else:
 			$Sprite_In.hide()
@@ -46,7 +57,12 @@ func _process(delta: float) -> void:
 			base_color.z = color_shade.b
 
 
+func get_color():
+	return color_shade
 
+
+func get_location_target():
+	return self.position
 
 #func _on_Area2D_area_entered(area):
 #
