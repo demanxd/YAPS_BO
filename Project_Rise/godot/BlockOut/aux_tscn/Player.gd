@@ -14,6 +14,7 @@ export(String) var action_suffix = ""
 onready var platform_detector = $PlatformDetector
 onready var sprite = $Sprite
 onready var camera = $Camera2D
+onready var timer = $Timer
 
 
 func _ready():
@@ -39,6 +40,7 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
+	
 	if is_movable:
 #		if Input.get_action_strength("run"):
 #			is_run = true
@@ -108,10 +110,19 @@ func get_new_animation(is_shooting = false):
 func set_camera_limits(x_left, x_right, y_top, y_bottom):
 	camera.limit_top    = y_top
 	camera.limit_left   = x_left
-	camera.limit_right  = x_right
+	camera.limit_right  = x_right + 2000
 	camera.limit_bottom = y_bottom
 
 
-func immediatly_move(new_posi: Vector2):
-	self.position.x = new_posi.x
-	self.position.y = new_posi.y
+func immediatly_move(new_position: Vector2, waiting_time: float):
+	self.position = new_position
+	is_movable = false
+	timer.start(waiting_time)
+	
+
+
+func _on_Timer_timeout():
+	if !is_movable:
+		is_movable = true
+	
+	pass # Replace with function body.

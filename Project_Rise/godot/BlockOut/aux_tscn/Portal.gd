@@ -70,4 +70,4 @@ func get_location_target():
 
 func _on_Area2D_body_entered(body):
 	if (body.name == "Player") and In:
-		body.immediatly_move(location_target)
+		body.immediatly_move(location_target, 0.2)
