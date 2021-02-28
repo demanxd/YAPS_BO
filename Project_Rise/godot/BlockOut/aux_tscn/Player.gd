@@ -93,7 +93,7 @@ func calculate_move_velocity(
 	if is_jump_interrupted:
 		# Decrease the Y velocity by multiplying it, but don't set it to 0
 		# as to not be too abrupt.
-		velocity.y *= 0.6
+		velocity.y *= 0.4
 	if is_run:
 		velocity.x *= run_md
 	return velocity
