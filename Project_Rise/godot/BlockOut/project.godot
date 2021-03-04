@@ -15,26 +15,31 @@ _global_script_classes=[ {
 "path": "res://Actor.gd"
 }, {
 "base": "Actor",
+"class": "Folower",
+"language": "GDScript",
+"path": "res://aux_tscn/Folower.gd"
+}, {
+"base": "Actor",
 "class": "Player",
 "language": "GDScript",
 "path": "res://aux_tscn/Player.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Folower": "",
 "Player": ""
 }
 
 [application]
 
 config/name="Block Out"
-run/main_scene="res://tscn_folders/Tavern.tscn"
+run/main_scene="res://aux_tscn/Empty_scene.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=512
 window/size/height=300
-window/size/fullscreen=true
 window/size/test_width=1024
 window/size/test_height=600
 window/stretch/mode="2d"
