@@ -14,12 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Actor.gd"
 }, {
-"base": "Actor",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://aux_tscn/Walker.gd"
-}, {
-"base": "Actor",
+"base": "Walker",
 "class": "Folower",
 "language": "GDScript",
 "path": "res://aux_tscn/Folower.gd"
@@ -28,12 +23,17 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://aux_tscn/Player.gd"
+}, {
+"base": "Actor",
+"class": "Walker",
+"language": "GDScript",
+"path": "res://aux_tscn/Walker.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Enemy": "",
 "Folower": "",
-"Player": ""
+"Player": "",
+"Walker": ""
 }
 
 [application]

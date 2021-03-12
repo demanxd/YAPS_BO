@@ -1,4 +1,4 @@
-class_name Enemy
+class_name Walker
 extends Actor
 
 
@@ -43,12 +43,9 @@ func _physics_process(_delta):
 	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
-	# We flip the Sprite depending on which way the enemy is moving.
-	sprite.scale.x = 1 if _velocity.x > 0 else -1
 
-#	var animation = get_new_animation()
-#	if animation != animation_player.current_animation:
-#		animation_player.play(animation)
+
+
 
 
 # This function calculates a new velocity whenever you need it.
@@ -56,15 +53,12 @@ func _physics_process(_delta):
 func calculate_move_velocity(linear_velocity):
 	var velocity = linear_velocity
 
-	if not floor_detector_left.is_colliding() :#or whall_detector_right.is_colliding():
-		print_debug("not left")
+	if not floor_detector_left.is_colliding():
 		velocity.x = speed.x
-	elif not floor_detector_right.is_colliding() :#or whall_detector_left.is_colliding():
-		print_debug("not right")
+	elif not floor_detector_right.is_colliding():
 		velocity.x = -speed.x
 
 	if is_on_wall():
-		print_debug("is_on_wall")
 		velocity.x *= -1
 
 	return velocity

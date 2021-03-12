@@ -15,7 +15,9 @@ tile_data = PoolIntArray( -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 209.792, -77.8364 )
+collision_mask = 35
 is_moveble = true
+local_speed_md = 1.5
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 3 )]
 current = true
@@ -29,3 +31,4 @@ position = Vector2( -138.08, -21.9114 )
 [node name="Walker" parent="." instance=ExtResource( 5 )]
 position = Vector2( 303.928, -53.801 )
 is_moveble = true
+local_speed_md = 0.5

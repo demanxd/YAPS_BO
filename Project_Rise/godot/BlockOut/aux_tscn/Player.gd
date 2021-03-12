@@ -17,6 +17,7 @@ onready var camera = $Camera2D
 onready var timer = $Timer
 
 
+
 func _ready():
 	pass
 
@@ -94,8 +95,6 @@ func calculate_move_velocity(
 		# Decrease the Y velocity by multiplying it, but don't set it to 0
 		# as to not be too abrupt.
 		velocity.y *= 0.4
-	if is_run:
-		velocity.x *= run_md
 	return velocity
 
 

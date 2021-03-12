@@ -19,6 +19,17 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="Platform_Detector" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 20 )
+
+[node name="Floor_Detector_Right" type="RayCast2D" parent="."]
+position = Vector2( 11, 0 )
+cast_to = Vector2( 0, 20 )
+
+[node name="Floor_Detector_Left" type="RayCast2D" parent="."]
+position = Vector2( -11, 0 )
+cast_to = Vector2( 0, 20 )
+
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionZone"]

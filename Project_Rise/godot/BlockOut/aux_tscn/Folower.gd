@@ -1,5 +1,5 @@
 class_name Folower
-extends Actor
+extends Walker
 
 
 enum{
@@ -24,7 +24,7 @@ var state = CHASE
 
 var knockback = Vector2.ZERO
 
-onready var sprite = $Sprite
+#onready var sprite = $Sprite
 #onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
 #onready var hurtBox = $Hurtbox
@@ -71,7 +71,7 @@ func _physics_process(delta):
 	
 #	if softCollision.is_colliding():
 #		velocity += softCollision.get_push_vector() * delta * 400
-	calculate_move_velocity(velocity,wanderController.target_position,Vector2.RIGHT,false)
+	calculate_move_velocity(velocity)#,wanderController.target_position,Vector2.RIGHT,false)
 	
 	var direction = Vector2.RIGHT
 	
@@ -83,16 +83,16 @@ func _physics_process(delta):
 		)
 
 
-func calculate_move_velocity(linear_velocity,direction,speed,is_jump_interrupted):
-	var velocity = linear_velocity
-	velocity.x = speed.x * direction.x
-	if direction.y != 0.0:
-		velocity.y = speed.y * direction.y
-	if is_jump_interrupted:
-		# Decrease the Y velocity by multiplying it, but don't set it to 0
-		# as to not be too abrupt.
-		velocity.y *= 0.4
-	return velocity
+#func calculate_move_velocity(linear_velocity,direction,speed,is_jump_interrupted):
+#	var velocity = linear_velocity
+#	velocity.x = speed.x * direction.x
+#	if direction.y != 0.0:
+#		velocity.y = speed.y * direction.y
+#	if is_jump_interrupted:
+#		# Decrease the Y velocity by multiplying it, but don't set it to 0
+#		# as to not be too abrupt.
+#		velocity.y *= 0.4
+#	return velocity
 
 
 
