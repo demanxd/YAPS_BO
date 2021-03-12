@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Actor.gd"
 }, {
 "base": "Actor",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://aux_tscn/Walker.gd"
+}, {
+"base": "Actor",
 "class": "Folower",
 "language": "GDScript",
 "path": "res://aux_tscn/Folower.gd"
@@ -26,6 +31,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"Enemy": "",
 "Folower": "",
 "Player": ""
 }

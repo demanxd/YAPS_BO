@@ -41,7 +41,7 @@ func _ready():
 #   you can easily move individual functions.
 func _physics_process(_delta):
 	
-	if is_movable:
+	if is_moveble:
 #		if Input.get_action_strength("run"):
 #			is_run = true
 #		else:
@@ -116,13 +116,13 @@ func set_camera_limits(x_left, x_right, y_top, y_bottom):
 
 func immediatly_move(new_position: Vector2, waiting_time: float):
 	self.position = new_position
-	is_movable = false
+	is_moveble = false
 	timer.start(waiting_time)
 	
 
 
 func _on_Timer_timeout():
-	if !is_movable:
-		is_movable = true
+	if !is_moveble:
+		is_moveble = true
 	
 	pass # Replace with function body.

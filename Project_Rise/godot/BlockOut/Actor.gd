@@ -9,7 +9,7 @@ export var speed = Vector2(150.0, 350.0)
 export var run_md = 1.5
 onready var is_run = false
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
-export var is_movable = false
+export var is_moveble = false
 export var mass = 1
 
 const FLOOR_NORMAL = Vector2.UP
