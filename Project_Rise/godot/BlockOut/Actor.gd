@@ -12,6 +12,7 @@ export var local_speed_md = 1.0
 export var debug = false
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var speed = Vector2.ZERO
+export var local_direction = Vector2.ZERO
 
 
 const FLOOR_NORMAL = Vector2.UP
@@ -44,4 +45,10 @@ func npc_move_and_slide_to(next_position : Vector2):
 		velocity.x = speed.x
 	elif(self.position.x >= next_position.x):
 		velocity.x = -speed.x
+	
+	if(self.position.x < next_position.x):
+		local_direction = Vector2.RIGHT
+	elif(self.position.x > next_position.x):
+		local_direction = Vector2.LEFT
+	
 	move_and_slide(velocity, FLOOR_NORMAL).y

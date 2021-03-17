@@ -11,15 +11,22 @@ extends Actor
 onready var wait_timer: Timer = $Timer
 onready var platform_detector: RayCast2D = $Platform_Detector
 
+onready var left_p_detect : Area2D = $Left_Player_Detector
+onready var right_p_detect : Area2D = $Right_Player_Detector
+
+
 onready var waypoints: = get_node(waypoints_path)
 
 export var editor_process: = true setget set_editor_process
 export var waypoints_path: = NodePath()
 export var wait_time : = 1.0
 
+onready var last_local_direction: Vector2
+
 var target_position: = Vector2()
 
 func _ready() -> void:
+	last_local_direction = local_direction
 	if not waypoints:
 		set_physics_process(false)
 		return
@@ -34,10 +41,24 @@ func _physics_process(delta: float) -> void:
 	if (self.position.x != target_position.x):
 		npc_move_and_slide_to(target_position)
 	
-	if ((target_position - position).normalized().x):
+	""" Set a maximum delta between current and next points. 
+	When metrics would done, this *if* wouldn,t be necessary """
+	
+	if (abs(self.position.x - target_position.x)) <= 4:
 		if debug:
 			print_debug(self.name + ": getting a new point")
 		target_position = waypoints.get_next_point_position()
+	if debug:
+		print_debug(self.name + " now in x = " + String(self.position.x) + "; y = "+String(self.position.y))
+		print_debug(self.name + " in " + String(self.position.x - target_position.x) + " condition")
+	if (last_local_direction != local_direction):
+		if (local_direction == Vector2.RIGHT):
+			left_p_detect.disconnect("body_entered", self, "_on_Left_Player_Detector_body_entered")
+			left_p_detect.
+			right_p_detect.connect("body_entered")
+		else:
+			right_p_detect.disconnect("body_entered")
+			left_p_detect.connect("body_entered")
 #		set_physics_process(false)
 #		wait_timer.start(wait_time)
 #	var direction: float
@@ -65,6 +86,15 @@ func set_editor_process(value:bool) -> void:
 func _on_Timer_timeout() -> void:
 	set_physics_process(true)
 
+
+func _on_Left_Player_Detector_body_entered(body):
+#	get_him_hurt()
+	pass # Replace with function body.
+
+
+func _on_Right_Player_Detector_body_entered(body):
+#	get_him_hurt()
+	pass # Replace with function body.
 
 
 
@@ -171,3 +201,4 @@ func destroy():
 #		animation_new = "destroy"
 #	return animation_new
 """
+
