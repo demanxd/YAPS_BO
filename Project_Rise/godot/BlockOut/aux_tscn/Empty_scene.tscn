@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://aux_tscn/Rock_TM.tscn" type="PackedScene" id=1]
 [ext_resource path="res://aux_tscn/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://aux_tscn/MainCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://aux_tscn/Folower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://aux_tscn/Walker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://aux_tscn/Waypoints.tscn" type="PackedScene" id=6]
 
 [node name="Empty_scene" type="Node2D"]
 
@@ -32,3 +33,15 @@ position = Vector2( -138.08, -21.9114 )
 position = Vector2( 303.928, -53.801 )
 is_moveble = true
 local_speed_md = 0.5
+waypoints_path = NodePath("../Waypoints")
+
+[node name="Waypoints" parent="." instance=ExtResource( 6 )]
+
+[node name="Position2D" type="Position2D" parent="Waypoints"]
+position = Vector2( 268.138, -13.2347 )
+
+[node name="Position2D2" type="Position2D" parent="Waypoints"]
+position = Vector2( 423.974, -12.921 )
+
+[node name="Position2D3" type="Position2D" parent="Waypoints"]
+position = Vector2( 271.144, -11.8414 )

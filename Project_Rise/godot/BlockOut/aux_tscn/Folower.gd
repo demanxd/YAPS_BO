@@ -1,7 +1,7 @@
 class_name Folower
 extends Walker
 
-
+"""
 enum{
 	IDLE,
 	WANDER,
@@ -144,3 +144,4 @@ func _on_PlayerDetectionZone_body_entered(body):
 
 func _on_PlayerDetectionZone_body_exited(body):
 	pass # Replace with function body.
+"""

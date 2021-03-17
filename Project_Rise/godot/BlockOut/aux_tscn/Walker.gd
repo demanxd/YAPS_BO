@@ -2,6 +2,100 @@ class_name Walker
 extends Actor
 
 
+
+
+  
+"""Moving platform, moves to target positions given by the Waypoints node"""
+#tool
+
+onready var wait_timer: Timer = $Timer
+onready var platform_detector: RayCast2D = $Platform_Detector
+
+onready var waypoints: = get_node(waypoints_path)
+
+export var editor_process: = true setget set_editor_process
+export var waypoints_path: = NodePath()
+export var wait_time : = 1.0
+
+var target_position: = Vector2()
+
+func _ready() -> void:
+	if not waypoints:
+		set_physics_process(false)
+		return
+	position = waypoints.get_start_position()
+	target_position = waypoints.get_next_point_position()
+
+
+func _physics_process(delta: float) -> void:
+	if debug:
+		if !platform_detector.collide_with_bodies:
+			print_debug("Warning! " + self.name + " cannot collide with bodies!")
+	if (self.position.x != target_position.x):
+		npc_move_and_slide_to(target_position)
+	
+	if ((target_position - position).normalized().x):
+		if debug:
+			print_debug(self.name + ": getting a new point")
+		target_position = waypoints.get_next_point_position()
+#		set_physics_process(false)
+#		wait_timer.start(wait_time)
+#	var direction: float
+#	direction = (target_position - position).normalized().x
+#	var motion: float
+#	motion = direction * speed.normalized().x * delta
+#	var distance_to_target: float
+#	distance_to_target = position.distance_to(target_position)
+#	if motion > distance_to_target:
+#		position = target_position
+#		target_position = waypoints.get_next_point_position()
+#		set_physics_process(false)
+#		wait_timer.start(wait_time)
+#	else:
+#		position.x += motion
+
+
+func set_editor_process(value:bool) -> void:
+	editor_process = value
+	if not Engine.editor_hint:
+		return
+	set_physics_process(value)
+
+
+func _on_Timer_timeout() -> void:
+	set_physics_process(true)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+Good for using without waypoints
+
 enum State {
 	WALKING,
 	DEAD
@@ -76,3 +170,4 @@ func destroy():
 #	else:
 #		animation_new = "destroy"
 #	return animation_new
+"""

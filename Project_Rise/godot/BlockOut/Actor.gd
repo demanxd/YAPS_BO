@@ -9,6 +9,7 @@ export var speed_base = Vector2(150.0, 350.0)
 export var is_moveble = false
 export var mass = 1
 export var local_speed_md = 1.0
+export var debug = false
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var speed = Vector2.ZERO
 
@@ -36,3 +37,11 @@ func speed_get():
 func set_local_speed_md(modificator : float):
 	local_speed_md = modificator
 	speed.x = local_speed_md * speed_base.x
+
+func npc_move_and_slide_to(next_position : Vector2):
+	var velocity = _velocity
+	if(self.position.x <= next_position.x):
+		velocity.x = speed.x
+	elif(self.position.x >= next_position.x):
+		velocity.x = -speed.x
+	move_and_slide(velocity, FLOOR_NORMAL).y
