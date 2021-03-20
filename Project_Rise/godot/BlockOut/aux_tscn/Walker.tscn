@@ -50,12 +50,14 @@ shape = SubResource( 1 )
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Left_Player_Detector" type="Area2D" parent="."]
+visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Left_Player_Detector"]
 position = Vector2( -8, 0 )
 shape = SubResource( 2 )
 
 [node name="Right_Player_Detector" type="Area2D" parent="."]
+visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Right_Player_Detector"]
 position = Vector2( 8, 0 )

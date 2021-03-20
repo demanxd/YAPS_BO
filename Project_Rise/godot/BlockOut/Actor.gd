@@ -5,14 +5,17 @@ extends KinematicBody2D
 # such as speed and are affected by gravity.
 
 
-export var speed_base = Vector2(150.0, 350.0)
+export var speed_base = Vector2(216.0, 250.0)
 export var is_moveble = false
 export var mass = 1
 export var local_speed_md = 1.0
 export var debug = false
+export var jump_height = 100
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var speed = Vector2.ZERO
 export var local_direction = Vector2.ZERO
+
+onready var is_jump_interrupted
 
 
 const FLOOR_NORMAL = Vector2.UP
@@ -22,12 +25,16 @@ var _velocity = Vector2.ZERO
 func _ready():
 	speed.x = local_speed_md * speed_base.x
 	speed.y = speed_base.y
-	print_debug(speed)
+	if debug:
+		print_debug(self.name + " speed = " + String(speed))
 
 # _physics_process is called after the inherited _physics_process function.
 # This allows the Player and Enemy scenes to be affected by gravity.
-func _physics_process(delta):
-	_velocity.y += gravity * delta
+#func _physics_process(delta):
+#	if is_jump_interrupted:
+#		_velocity.y += gravity * delta
+#	if debug:
+#		print_debug(self.name + " speed x = " + String(_velocity.x) + "; speed y = " + String(_velocity.y))
 
 func speed_set(expr : Vector2):
 	speed = expr

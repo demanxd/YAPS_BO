@@ -17,7 +17,7 @@ texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 192.143, 192.418 )
-is_movable = true
+is_moveble = true
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 6 )]
 current = true
@@ -38,154 +38,234 @@ tile_data = PoolIntArray( -720761, 0, 0, -720760, 0, 0, -720759, 0, 0, -720758, 
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 339.773, 359.95 )
+In = false
 debug = false
+location_self = Vector2( 0, 0 )
+location_target = Vector2( 0, 0 )
 color_shade = Color( 0.0941176, 0.478431, 0.929412, 1 )
 base_color = Vector3( 0.0941176, 0.478431, 0.929412 )
 
 [node name="Portal" parent="Portal" instance=ExtResource( 5 )]
 position = Vector2( 60.5044, 78.9006 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 339.773, 359.95 )
 color_shade = Color( 0.0941176, 0.478431, 0.929412, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal2" parent="Portal" instance=ExtResource( 5 )]
 position = Vector2( 161.094, 80.2092 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 339.773, 359.95 )
 color_shade = Color( 0.0941176, 0.478431, 0.929412, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal3" parent="Portal" instance=ExtResource( 5 )]
 position = Vector2( 380.14, 40.0358 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 339.773, 359.95 )
 color_shade = Color( 0.0941176, 0.478431, 0.929412, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200.452, 239.652 )
+In = false
+debug = true
+location_self = Vector2( 0, 0 )
+location_target = Vector2( 0, 0 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
 base_color = Vector3( 0.0627451, 0.866667, 0.282353 )
 
 [node name="Portal" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -140.946, 160.261 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal3" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -180.536, 160.065 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal4" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -60.2908, 139.825 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal5" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -221.015, 141.016 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal6" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -261.097, 141.016 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal7" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -300.782, 141.413 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal2" parent="Portal2" instance=ExtResource( 5 )]
 position = Vector2( -100.419, 160.001 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 200.452, 239.652 )
 color_shade = Color( 0.0627451, 0.866667, 0.282353, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1059.4, 279.552 )
+In = false
+debug = true
+location_self = Vector2( 0, 0 )
+location_target = Vector2( 0, 0 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 
 [node name="Portal4" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 79.0601, 160.325 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal5" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 119.378, 160.955 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal6" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 160.64, 160.955 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal7" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 200.013, 162.53 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal12" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 400.372, 181.05 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal13" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 432.783, 181.049 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal14" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 460.424, 179.928 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal8" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 660.514, 120.322 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal9" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 699.886, 120.637 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal10" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 737.054, 119.692 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal11" parent="Portal3" instance=ExtResource( 5 )]
 position = Vector2( 760.048, 120.007 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1059.4, 279.552 )
 color_shade = Color( 0.913725, 0.596078, 0.596078, 1 )
+base_color = Vector3( 0, 0, 0 )
 
 [node name="Portal4" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1960.1, 258.17 )
+In = false
+debug = true
+location_self = Vector2( 0, 0 )
+location_target = Vector2( 0, 0 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.968627, 1, 0 )
 
 [node name="Portal5" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 220.052, -18.7089 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -193,6 +273,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal6" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 299.248, -19.416 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -200,6 +282,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal8" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 619.109, -77.3561 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -207,6 +291,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal9" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 657.207, -77.3561 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -214,6 +300,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal10" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 695.304, -76.5624 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -221,6 +309,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal11" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 728.64, -76.5624 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -228,6 +318,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal12" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 760.388, -76.5624 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )
@@ -235,6 +327,8 @@ base_color = Vector3( 0.913725, 0.596078, 0.596078 )
 [node name="Portal7" parent="Portal4" instance=ExtResource( 5 )]
 position = Vector2( 320.461, -20.1231 )
 In = true
+debug = true
+location_self = Vector2( 0, 0 )
 location_target = Vector2( 1960.1, 258.17 )
 color_shade = Color( 0.968627, 1, 0, 1 )
 base_color = Vector3( 0.913725, 0.596078, 0.596078 )

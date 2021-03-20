@@ -10,9 +10,8 @@ extends Actor
 
 onready var wait_timer: Timer = $Timer
 onready var platform_detector: RayCast2D = $Platform_Detector
-
-onready var left_p_detect : Area2D = $Left_Player_Detector
-onready var right_p_detect : Area2D = $Right_Player_Detector
+onready var left_p_detect : CollisionShape2D = $Left_Player_Detector/Collision
+onready var right_p_detect : CollisionShape2D = $Right_Player_Detector/Collision
 
 
 onready var waypoints: = get_node(waypoints_path)
@@ -26,10 +25,15 @@ onready var last_local_direction: Vector2
 var target_position: = Vector2()
 
 func _ready() -> void:
+#	if left_p_detect.is_processing():
+#		left_p_detect.set_process(false)
+#	if right_p_detect.is_processing():
+#		right_p_detect.set_process(false)
 	last_local_direction = local_direction
 	if not waypoints:
 		set_physics_process(false)
 		return
+	
 	position = waypoints.get_start_position()
 	target_position = waypoints.get_next_point_position()
 
@@ -53,12 +57,15 @@ func _physics_process(delta: float) -> void:
 		print_debug(self.name + " in " + String(self.position.x - target_position.x) + " condition")
 	if (last_local_direction != local_direction):
 		if (local_direction == Vector2.RIGHT):
-			left_p_detect.disconnect("body_entered", self, "_on_Left_Player_Detector_body_entered")
-			left_p_detect.
-			right_p_detect.connect("body_entered")
+			if left_p_detect.is_processing():
+				left_p_detect.set_process(false)
+			if not right_p_detect.is_processing():
+				right_p_detect.set_process(true)
 		else:
-			right_p_detect.disconnect("body_entered")
-			left_p_detect.connect("body_entered")
+			if right_p_detect.is_processing():
+				right_p_detect.set_process(false)
+			if not left_p_detect.is_processing():
+				left_p_detect.set_process(true)
 #		set_physics_process(false)
 #		wait_timer.start(wait_time)
 #	var direction: float
@@ -88,11 +95,13 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_Left_Player_Detector_body_entered(body):
+	print_debug(self.name + ": " + body.name + " is cached in left!")
 #	get_him_hurt()
 	pass # Replace with function body.
 
 
 func _on_Right_Player_Detector_body_entered(body):
+	print_debug(self.name + ": " + body.name + " is cached in right!")
 #	get_him_hurt()
 	pass # Replace with function body.
 
