@@ -16,6 +16,10 @@ onready var sprite = $Sprite
 onready var camera = $Camera2D
 onready var timer = $Timer
 
+onready var jumping = false
+onready var stopping_jump = false
+onready var step = 10;
+
 
 var max_h = 0.0 #delete!!!
 
@@ -50,14 +54,19 @@ func _physics_process(_delta):
 #		else:
 #			is_run = false
 		
+		
+		var jump = Input.is_action_pressed("jump" + action_suffix)
 		var direction = get_direction()
 #		if debug:
 #			print_debug(self.name + ": direction = " + String(direction))
 		
-		if direction.y == -1:
+		if jump:
 			is_jump_interrupted = true
 		else:
 			is_jump_interrupted = false
+#
+		if is_jump_interrupted:
+			jumping = true
 		
 #		if debug:
 #			print_debug(self.name + ": is_jump_interrupted = " + String(is_jump_interrupted))
@@ -69,15 +78,40 @@ func _physics_process(_delta):
 		var is_on_platform = is_on_floor()
 #		if debug:
 #			print_debug(self.name + ": is_on_platform = " + String(is_on_floor()))
+		
+		
+		# Process jump.
+		if jumping:
+			if _velocity.y < speed_base.y:
+				# Set off the jumping flag if going down.
+				_velocity.y -= gravity * step
+			elif not jump:
+				stopping_jump = true
 			
-		jump()
-		_velocity.y += gravity
+			if stopping_jump:
+				_velocity.y += gravity * step
+		
+#		Check jump.
+		if not jumping and jump:
+			_velocity.y -= gravity
+			jumping = true
+			stopping_jump = false
+		
+		
+		
+#		if jumping:
+#			jump()
+#		else:
+#			jumping.y += gravity
+		
+#		if speed_base.y + _velocity.y >= 0:
+#			jumping = false
 		
 		if (_velocity.y >= max_h):
 			max_h = _velocity.y
 		
 		if debug:
-			print_debug(self.name + ": max_h = " + String(max_h))
+			print_debug(self.name + ": max_h = " + String(max_h) + ", in jump: " + String(jumping) + ", gravity = " + String(gravity))
 		
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 #		_velocity = move_and_slide_with_snap(
@@ -90,10 +124,8 @@ func _physics_process(_delta):
 
 
 func jump() -> void:
-	if self.is_on_floor():
-		if Input.is_action_just_pressed("jump" + action_suffix):
-			if _velocity.y <= speed.y:
-				_velocity.y -= speed.y * gravity
+	if _velocity.y < speed.y:
+		_velocity.y -= speed.y * gravity
 
 
 func get_direction():
