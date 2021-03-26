@@ -17,8 +17,9 @@ tile_data = PoolIntArray( -131078, 0, 0, -131076, 0, 0, -131074, 0, 0, -196608, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 656, -16 )
 collision_mask = 35
-speed_base = Vector2( 220, 40 )
+speed_base = Vector2( 220, 300 )
 is_moveble = true
+MAX_JUMP_DISTANCE = 500
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 3 )]
 current = true
@@ -36,7 +37,10 @@ local_speed_md = 0.5
 waypoints_path = NodePath("../Waypoints")
 
 [node name="Waypoints" parent="." instance=ExtResource( 6 )]
+editor_process = true
+line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
 line_width = 5.0
+triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints"]
 position = Vector2( 271.144, -8 )

@@ -8,6 +8,7 @@ const FLOOR_DETECT_DISTANCE = 20.0
 export var MAX_JUMP_DISTANCE = 0
 var JUMP_DISTANCE = 0 #jump upper position
 var IN_AIR = false
+var in_jump = false
 
 export(String) var action_suffix = ""
 
@@ -79,6 +80,7 @@ func _physics_process(_delta):
 #		if debug:
 #			print_debug(self.name + ": is_on_platform = " + String(is_on_floor()))
 		
+<<<<<<< HEAD
 		
 		# Process jump.
 		if jumping:
@@ -106,6 +108,18 @@ func _physics_process(_delta):
 		
 #		if speed_base.y + _velocity.y >= 0:
 #			jumping = false
+=======
+#		if Input.is_action_just_pressed("jump" + action_suffix):
+#			if self.is_on_floor():
+#				if _velocity.y <= MAX_JUMP_DISTANCE:
+#					_velocity.y -= speed.y * gravity
+#		elif !self.is_on_floor():
+#			_velocity.y += speed.y * gravity
+#		else:
+#			_velocity.y = 0
+		jump()
+#		_velocity.y += gravity
+>>>>>>> 73bdb35... Rewriting jump function. NOT FINAL VERSION
 		
 		if (_velocity.y >= max_h):
 			max_h = _velocity.y
@@ -124,8 +138,22 @@ func _physics_process(_delta):
 
 
 func jump() -> void:
+<<<<<<< HEAD
 	if _velocity.y < speed.y:
 		_velocity.y -= speed.y * gravity
+=======
+	if self.is_on_floor() or in_jump:
+		if Input.is_action_just_pressed("jump" + action_suffix):
+			in_jump = true
+		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
+			_velocity.y -= speed.y * gravity
+			if _velocity.y <= MAX_JUMP_DISTANCE:
+				in_jump = false
+	elif not self.is_on_floor() and not in_jump:
+		_velocity.y += speed.y * gravity
+	else:
+		_velocity.y = 0
+>>>>>>> 73bdb35... Rewriting jump function. NOT FINAL VERSION
 
 
 func get_direction():
