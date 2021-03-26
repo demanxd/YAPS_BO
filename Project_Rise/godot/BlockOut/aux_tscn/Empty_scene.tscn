@@ -17,9 +17,9 @@ tile_data = PoolIntArray( -131078, 0, 0, -131076, 0, 0, -131074, 0, 0, -196608, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 656, -16 )
 collision_mask = 35
-speed_base = Vector2( 220, 300 )
+speed_base = Vector2( 220, 5 )
 is_moveble = true
-MAX_JUMP_DISTANCE = 500
+MAX_JUMP_DISTANCE = 120
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 3 )]
 current = true

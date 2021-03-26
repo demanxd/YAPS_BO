@@ -6,8 +6,6 @@ extends Actor
 
 const FLOOR_DETECT_DISTANCE = 20.0
 export var MAX_JUMP_DISTANCE = 0
-var JUMP_DISTANCE = 0 #jump upper position
-var IN_AIR = false
 var in_jump = false
 
 export(String) var action_suffix = ""
@@ -46,52 +44,22 @@ func _ready():
 func _physics_process(_delta):
 	
 	if is_moveble:
-#		if Input.get_action_strength("run"):
-#			is_run = true
-#		else:
-#			is_run = false
 		
 		var direction = get_direction()
-#		if debug:
-#			print_debug(self.name + ": direction = " + String(direction))
 		
-		if direction.y == -1:
-			is_jump_interrupted = true
-		else:
-			is_jump_interrupted = false
-		
-#		if debug:
-#			print_debug(self.name + ": is_jump_interrupted = " + String(is_jump_interrupted))
-		
-		_velocity = calculate_move_velocity(_velocity, direction, speed, is_jump_interrupted)
+		_velocity = calculate_move_velocity(_velocity, direction, speed)
 	
 		var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if direction.y == 0.0 else Vector2.ZERO
-#		var is_on_platform = platform_detector.is_colliding()
 		var is_on_platform = is_on_floor()
-#		if debug:
-#			print_debug(self.name + ": is_on_platform = " + String(is_on_floor()))
+#		jump()
 		
-#		if Input.is_action_just_pressed("jump" + action_suffix):
-#			if self.is_on_floor():
-#				if _velocity.y <= MAX_JUMP_DISTANCE:
-#					_velocity.y -= speed.y * gravity
-#		elif !self.is_on_floor():
-#			_velocity.y += speed.y * gravity
-#		else:
-#			_velocity.y = 0
-		jump()
-#		_velocity.y += gravity
-		
-		if (_velocity.y >= max_h):
-			max_h = _velocity.y
+		if (-_velocity.y >= max_h):
+			max_h = -_velocity.y
 		
 		if debug:
 			print_debug(self.name + ": max_h = " + String(max_h))
 		
 		_velocity = move_and_slide(_velocity, Vector2.UP)
-#		_velocity = move_and_slide_with_snap(
-#			_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
-#			)
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			if collision.collider.has_method("collide_with"):
@@ -104,7 +72,7 @@ func jump() -> void:
 			in_jump = true
 		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
 			_velocity.y -= speed.y * gravity
-			if _velocity.y <= MAX_JUMP_DISTANCE:
+			if _velocity.y <= -MAX_JUMP_DISTANCE:
 				in_jump = false
 	elif not self.is_on_floor() and not in_jump:
 		_velocity.y += speed.y * gravity
@@ -116,8 +84,8 @@ func get_direction():
 	return Vector2(
 		Input.get_action_strength("move_right" + action_suffix)
 			- Input.get_action_strength("move_left" + action_suffix),
-			-1
-			if is_on_floor() and Input.is_action_just_pressed("jump" + action_suffix)
+			1
+			if self.is_on_floor() and Input.is_action_just_pressed("jump" + action_suffix)
 			else 0
 	)
 
@@ -127,8 +95,7 @@ func get_direction():
 func calculate_move_velocity(
 	linear_velocity,
 	direction,
-	speed,
-	is_jump_interrupted
+	speed
 ):
 	var velocity = linear_velocity
 	velocity.x = speed.x * direction.x
@@ -138,6 +105,18 @@ func calculate_move_velocity(
 #		# Decrease the Y velocity by multiplying it, but don't set it to 0
 #		# as to not be too abrupt.
 #		velocity.y *= 0.4
+	if direction.y:
+		in_jump = true
+	if in_jump:
+		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
+			_velocity.y -= speed.y * gravity
+			if _velocity.y <= -MAX_JUMP_DISTANCE:
+				in_jump = false
+	elif not in_jump:
+		_velocity.y += speed.y * gravity
+	else:
+		_velocity.y = 0
+	
 	return velocity
 
 

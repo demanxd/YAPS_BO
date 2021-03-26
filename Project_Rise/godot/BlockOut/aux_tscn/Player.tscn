@@ -9,7 +9,9 @@ extents = Vector2( 10, 17.3032 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 33
 script = ExtResource( 2 )
+speed_base = Vector2( 216, 5 )
 debug = true
+MAX_JUMP_DISTANCE = 900
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

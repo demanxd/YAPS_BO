@@ -15,7 +15,6 @@ onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var speed = Vector2.ZERO
 export var local_direction = Vector2.ZERO
 
-onready var is_jump_interrupted
 
 
 const FLOOR_NORMAL = Vector2.UP
