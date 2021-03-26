@@ -17,10 +17,6 @@ onready var sprite = $Sprite
 onready var camera = $Camera2D
 onready var timer = $Timer
 
-onready var jumping = false
-onready var stopping_jump = false
-onready var step = 10;
-
 
 var max_h = 0.0 #delete!!!
 
@@ -55,19 +51,14 @@ func _physics_process(_delta):
 #		else:
 #			is_run = false
 		
-		
-		var jump = Input.is_action_pressed("jump" + action_suffix)
 		var direction = get_direction()
 #		if debug:
 #			print_debug(self.name + ": direction = " + String(direction))
 		
-		if jump:
+		if direction.y == -1:
 			is_jump_interrupted = true
 		else:
 			is_jump_interrupted = false
-#
-		if is_jump_interrupted:
-			jumping = true
 		
 #		if debug:
 #			print_debug(self.name + ": is_jump_interrupted = " + String(is_jump_interrupted))
@@ -80,35 +71,6 @@ func _physics_process(_delta):
 #		if debug:
 #			print_debug(self.name + ": is_on_platform = " + String(is_on_floor()))
 		
-<<<<<<< HEAD
-		
-		# Process jump.
-		if jumping:
-			if _velocity.y < speed_base.y:
-				# Set off the jumping flag if going down.
-				_velocity.y -= gravity * step
-			elif not jump:
-				stopping_jump = true
-			
-			if stopping_jump:
-				_velocity.y += gravity * step
-		
-#		Check jump.
-		if not jumping and jump:
-			_velocity.y -= gravity
-			jumping = true
-			stopping_jump = false
-		
-		
-		
-#		if jumping:
-#			jump()
-#		else:
-#			jumping.y += gravity
-		
-#		if speed_base.y + _velocity.y >= 0:
-#			jumping = false
-=======
 #		if Input.is_action_just_pressed("jump" + action_suffix):
 #			if self.is_on_floor():
 #				if _velocity.y <= MAX_JUMP_DISTANCE:
@@ -119,13 +81,12 @@ func _physics_process(_delta):
 #			_velocity.y = 0
 		jump()
 #		_velocity.y += gravity
->>>>>>> 73bdb35... Rewriting jump function. NOT FINAL VERSION
 		
 		if (_velocity.y >= max_h):
 			max_h = _velocity.y
 		
 		if debug:
-			print_debug(self.name + ": max_h = " + String(max_h) + ", in jump: " + String(jumping) + ", gravity = " + String(gravity))
+			print_debug(self.name + ": max_h = " + String(max_h))
 		
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 #		_velocity = move_and_slide_with_snap(
@@ -138,10 +99,6 @@ func _physics_process(_delta):
 
 
 func jump() -> void:
-<<<<<<< HEAD
-	if _velocity.y < speed.y:
-		_velocity.y -= speed.y * gravity
-=======
 	if self.is_on_floor() or in_jump:
 		if Input.is_action_just_pressed("jump" + action_suffix):
 			in_jump = true
@@ -153,7 +110,6 @@ func jump() -> void:
 		_velocity.y += speed.y * gravity
 	else:
 		_velocity.y = 0
->>>>>>> 73bdb35... Rewriting jump function. NOT FINAL VERSION
 
 
 func get_direction():
