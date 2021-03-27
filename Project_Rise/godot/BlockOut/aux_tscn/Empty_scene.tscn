@@ -19,7 +19,9 @@ position = Vector2( 656, -16 )
 collision_mask = 35
 speed_base = Vector2( 220, 5 )
 is_moveble = true
-MAX_JUMP_DISTANCE = 120
+jump_height = 80
+MAX_JUMP_DISTANCE = 40
+local_gravity = 5
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 3 )]
 current = true

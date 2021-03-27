@@ -6,7 +6,9 @@ extends Actor
 
 const FLOOR_DETECT_DISTANCE = 20.0
 export var MAX_JUMP_DISTANCE = 0
+export var local_gravity = 1 #delete later
 var in_jump = false
+onready var local_MJD
 
 export(String) var action_suffix = ""
 
@@ -20,7 +22,8 @@ var max_h = 0.0 #delete!!!
 
 
 func _ready():
-	pass
+	local_MJD = jump_height * gravity
+#	pass
 
 
 # Physics process is a built-in loop in Godot.
@@ -49,16 +52,23 @@ func _physics_process(_delta):
 		
 		_velocity = calculate_move_velocity(_velocity, direction, speed)
 	
-		var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if direction.y == 0.0 else Vector2.ZERO
+#		var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if direction.y == 0.0 else Vector2.ZERO
 		var is_on_platform = is_on_floor()
-#		jump()
+#		jump(true) #if direction.y == 1 else false)
+		
+		_velocity.y += pow(gravity,2)
+		
+		if (direction.y):
+			_velocity.y -= local_MJD
 		
 		if (-_velocity.y >= max_h):
 			max_h = -_velocity.y
 		
 		if debug:
-			print_debug(self.name + ": max_h = " + String(max_h))
-		
+			print(self.name + ": velocity y = " + String(-_velocity.y))
+#			if direction.y == 1:
+#				print(String(direction.x) + "; " + String(direction.y))
+
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
@@ -66,18 +76,20 @@ func _physics_process(_delta):
 				collision.collider.collide_with(collision, self)
 
 
-func jump() -> void:
-	if self.is_on_floor() or in_jump:
-		if Input.is_action_just_pressed("jump" + action_suffix):
-			in_jump = true
-		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
-			_velocity.y -= speed.y * gravity
-			if _velocity.y <= -MAX_JUMP_DISTANCE:
-				in_jump = false
-	elif not self.is_on_floor() and not in_jump:
-		_velocity.y += speed.y * gravity
-	else:
-		_velocity.y = 0
+func jump(dir_y) -> void:
+#	if self.is_on_floor() or in_jump:
+#	if dir_y:#Input.is_action_just_pressed("jump" + action_suffix):
+#		in_jump = true
+#		_velocity.y -= speed.y
+#	if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
+#		_velocity.y -= _velocity.y * gravity
+#		if _velocity.y <= -MAX_JUMP_DISTANCE:
+#			in_jump = false
+#	elif not in_jump:
+#		_velocity.y += _velocity.y * gravity
+#	else:
+#		_velocity.y = 0
+	_velocity.y += MAX_JUMP_DISTANCE
 
 
 func get_direction():
@@ -105,17 +117,17 @@ func calculate_move_velocity(
 #		# Decrease the Y velocity by multiplying it, but don't set it to 0
 #		# as to not be too abrupt.
 #		velocity.y *= 0.4
-	if direction.y:
-		in_jump = true
-	if in_jump:
-		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
-			_velocity.y -= speed.y * gravity
-			if _velocity.y <= -MAX_JUMP_DISTANCE:
-				in_jump = false
-	elif not in_jump:
-		_velocity.y += speed.y * gravity
-	else:
-		_velocity.y = 0
+#	if direction.y:
+#		in_jump = true
+#	if in_jump:
+#		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
+#			_velocity.y -= speed.y * gravity
+#			if _velocity.y <= -MAX_JUMP_DISTANCE:
+#				in_jump = false
+#	elif not in_jump:
+#		_velocity.y += speed.y * gravity
+#	else:
+#		_velocity.y = 0
 	
 	return velocity
 

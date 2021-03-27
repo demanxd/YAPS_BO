@@ -85,7 +85,7 @@ move_left={
 
 2d/physics_engine="GodotPhysics"
 2d/cell_size=20
-2d/default_gravity=1
+2d/default_gravity=5
 
 [rendering]
 
