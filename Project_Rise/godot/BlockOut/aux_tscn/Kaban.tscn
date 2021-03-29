@@ -1,65 +1,57 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://aux_tscn/Walker.gd" type="Script" id=1]
+[ext_resource path="res://aux_tscn/Kaban.gd" type="Script" id=1]
 [ext_resource path="res://textures/png/Enemy.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.2591
-height = 14.859
+radius = 12.9567
+height = 7.31897
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4, 10 )
+extents = Vector2( 4.49018, 10 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 4, 10 )
-
-[node name="Walker" type="KinematicBody2D"]
-collision_layer = 2
-collision_mask = 32
+[node name="Kaban" type="KinematicBody2D"]
 script = ExtResource( 1 )
+debug = true
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 texture = ExtResource( 2 )
 
 [node name="Platform_Detector" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( 0, 18 )
 collision_mask = 33
 
 [node name="Floor_Detector_Right" type="RayCast2D" parent="."]
-visible = false
-position = Vector2( 11, 0 )
+position = Vector2( 19, 0 )
 enabled = true
-cast_to = Vector2( 0, 20 )
+cast_to = Vector2( 0, 18 )
 collision_mask = 32
 
 [node name="Floor_Detector_Left" type="RayCast2D" parent="."]
-visible = false
-position = Vector2( -11, 0 )
+position = Vector2( -19, 0 )
 enabled = true
-cast_to = Vector2( 0, 20 )
+cast_to = Vector2( 0, 18 )
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 0.8 )
+position = Vector2( 0, 3 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Left_Player_Detector" type="Area2D" parent="."]
-visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Left_Player_Detector"]
-position = Vector2( -8, 0 )
+position = Vector2( -15, 0 )
 shape = SubResource( 2 )
 
 [node name="Right_Player_Detector" type="Area2D" parent="."]
-visible = false
 
 [node name="Collision" type="CollisionShape2D" parent="Right_Player_Detector"]
-position = Vector2( 8, 0 )
-shape = SubResource( 3 )
+position = Vector2( 15, 0 )
+shape = SubResource( 2 )
 [connection signal="body_entered" from="Left_Player_Detector" to="." method="_on_Left_Player_Detector_body_entered"]
 [connection signal="body_entered" from="Right_Player_Detector" to="." method="_on_Right_Player_Detector_body_entered"]

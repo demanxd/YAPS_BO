@@ -1,3 +1,4 @@
+tool
 class_name Walker
 extends Actor
 
@@ -13,8 +14,7 @@ onready var platform_detector: RayCast2D = $Platform_Detector
 onready var left_p_detect : CollisionShape2D = $Left_Player_Detector/Collision
 onready var right_p_detect : CollisionShape2D = $Right_Player_Detector/Collision
 
-
-onready var waypoints: = get_node(waypoints_path)
+onready var waypoints
 
 export var editor_process: = true setget set_editor_process
 export var waypoints_path: = NodePath()
@@ -29,6 +29,7 @@ func _ready() -> void:
 #		left_p_detect.set_process(false)
 #	if right_p_detect.is_processing():
 #		right_p_detect.set_process(false)
+	waypoints = get_node(waypoints_path)
 	last_local_direction = local_direction
 	if not waypoints:
 		set_physics_process(false)
@@ -36,51 +37,58 @@ func _ready() -> void:
 	
 	position = waypoints.get_start_position()
 	target_position = waypoints.get_next_point_position()
+	
+	if debug:
+		print(self.name + ": start position : x = " + String(position.x) + ", y = " + String(position.y))
+		print(self.name + ": next position : x = " + String(target_position.x) + ", y = " + String(target_position.y))
 
 
 func _physics_process(delta: float) -> void:
-	if debug:
-		if !platform_detector.collide_with_bodies:
-			print_debug("Warning! " + self.name + " cannot collide with bodies!")
-	if (self.position.x != target_position.x):
-		npc_move_and_slide_to(target_position)
-	
-	""" Set a maximum delta between current and next points. 
-	When metrics would done, this *if* wouldn,t be necessary """
-	
-	if (abs(self.position.x - target_position.x)) <= 4:
-		if debug:
-			print_debug(self.name + ": getting a new point")
-		target_position = waypoints.get_next_point_position()
-	if debug:
-		print_debug(self.name + " now in x = " + String(self.position.x) + "; y = "+String(self.position.y))
-		print_debug(self.name + " in " + String(self.position.x - target_position.x) + " condition")
-	if (last_local_direction != local_direction):
-		if (local_direction == Vector2.RIGHT):
-			if left_p_detect.is_processing():
-				left_p_detect.set_process(false)
-			if not right_p_detect.is_processing():
-				right_p_detect.set_process(true)
-		else:
-			if right_p_detect.is_processing():
-				right_p_detect.set_process(false)
-			if not left_p_detect.is_processing():
-				left_p_detect.set_process(true)
-#		set_physics_process(false)
-#		wait_timer.start(wait_time)
-#	var direction: float
-#	direction = (target_position - position).normalized().x
-#	var motion: float
-#	motion = direction * speed.normalized().x * delta
-#	var distance_to_target: float
-#	distance_to_target = position.distance_to(target_position)
-#	if motion > distance_to_target:
-#		position = target_position
-#		target_position = waypoints.get_next_point_position()
-#		set_physics_process(false)
-#		wait_timer.start(wait_time)
-#	else:
-#		position.x += motion
+#	if debug:
+#		if !platform_detector.collide_with_bodies:
+#			print_debug("Warning! " + self.name + " cannot collide with bodies!")
+	if is_moveble:
+		if (self.position.x != target_position.x):
+			npc_move_and_slide_to(target_position)
+		
+		""" Set a maximum delta between current and next points. 
+		When metrics would done, this *if* wouldn,t be necessary """
+		
+		if (abs(self.position.x - target_position.x)) <= 4:
+			if debug:
+				print_debug(self.name + ": getting a new point")
+			target_position = waypoints.get_next_point_position()
+			if debug:
+				print(self.name + ": next point: " + String(target_position))
+#		if debug:
+#			print_debug(self.name + " now in x = " + String(self.position.x) + "; y = "+String(self.position.y))
+#			print_debug(self.name + " in " + String(self.position.x - target_position.x) + " condition")
+		if (last_local_direction != local_direction):
+			if (local_direction == Vector2.RIGHT):
+				if left_p_detect.is_processing():
+					left_p_detect.set_process(false)
+				if not right_p_detect.is_processing():
+					right_p_detect.set_process(true)
+			else:
+				if right_p_detect.is_processing():
+					right_p_detect.set_process(false)
+				if not left_p_detect.is_processing():
+					left_p_detect.set_process(true)
+	#		set_physics_process(false)
+	#		wait_timer.start(wait_time)
+	#	var direction: float
+	#	direction = (target_position - position).normalized().x
+	#	var motion: float
+	#	motion = direction * speed.normalized().x * delta
+	#	var distance_to_target: float
+	#	distance_to_target = position.distance_to(target_position)
+	#	if motion > distance_to_target:
+	#		position = target_position
+	#		target_position = waypoints.get_next_point_position()
+	#		set_physics_process(false)
+	#		wait_timer.start(wait_time)
+	#	else:
+	#		position.x += motion
 
 
 func set_editor_process(value:bool) -> void:
