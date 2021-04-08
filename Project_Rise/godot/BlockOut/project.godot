@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://aux_tscn/Kaban.gd"
 }, {
+"base": "Walker",
+"class": "NPC",
+"language": "GDScript",
+"path": "res://aux_tscn/NPC.gd"
+}, {
 "base": "Actor",
 "class": "Player",
 "language": "GDScript",
@@ -38,14 +43,15 @@ _global_script_class_icons={
 "Actor": "",
 "Folower": "",
 "Kaban": "",
+"NPC": "",
 "Player": "",
 "Walker": ""
 }
 
 [application]
 
-config/name="Block Out"
-run/main_scene="res://aux_tscn/Empty_scene.tscn"
+config/name="YAPS Block Out"
+run/main_scene="res://tscn_folders/Tavern.tscn"
 config/icon="res://icon.png"
 
 [display]

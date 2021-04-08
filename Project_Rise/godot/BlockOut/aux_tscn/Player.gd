@@ -56,7 +56,7 @@ func _physics_process(_delta):
 		var is_on_platform = is_on_floor()
 #		jump(true) #if direction.y == 1 else false)
 		
-		_velocity.y += pow(gravity,2)
+		add_gravity()
 		
 		if (direction.y):
 			_velocity.y -= local_MJD

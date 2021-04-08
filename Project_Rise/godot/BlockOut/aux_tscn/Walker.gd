@@ -1,4 +1,3 @@
-tool
 class_name Walker
 extends Actor
 
@@ -25,10 +24,6 @@ onready var last_local_direction: Vector2
 var target_position: = Vector2()
 
 func _ready() -> void:
-#	if left_p_detect.is_processing():
-#		left_p_detect.set_process(false)
-#	if right_p_detect.is_processing():
-#		right_p_detect.set_process(false)
 	waypoints = get_node(waypoints_path)
 	last_local_direction = local_direction
 	if not waypoints:
@@ -60,9 +55,6 @@ func _physics_process(delta: float) -> void:
 			target_position = waypoints.get_next_point_position()
 			if debug:
 				print(self.name + ": next point: " + String(target_position))
-#		if debug:
-#			print_debug(self.name + " now in x = " + String(self.position.x) + "; y = "+String(self.position.y))
-#			print_debug(self.name + " in " + String(self.position.x - target_position.x) + " condition")
 		if (last_local_direction != local_direction):
 			if (local_direction == Vector2.RIGHT):
 				if left_p_detect.is_processing():
@@ -74,21 +66,14 @@ func _physics_process(delta: float) -> void:
 					right_p_detect.set_process(false)
 				if not left_p_detect.is_processing():
 					left_p_detect.set_process(true)
-	#		set_physics_process(false)
-	#		wait_timer.start(wait_time)
-	#	var direction: float
-	#	direction = (target_position - position).normalized().x
-	#	var motion: float
-	#	motion = direction * speed.normalized().x * delta
-	#	var distance_to_target: float
-	#	distance_to_target = position.distance_to(target_position)
-	#	if motion > distance_to_target:
-	#		position = target_position
-	#		target_position = waypoints.get_next_point_position()
-	#		set_physics_process(false)
-	#		wait_timer.start(wait_time)
-	#	else:
-	#		position.x += motion
+	if is_under_gravity:
+		if debug:
+			print(self.name + ": gravity ok!")
+		add_gravity()
+	else:
+		if debug:
+			print(self.name + ": gravity not ok!")
+#	self._extends_phys_process()
 
 
 func set_editor_process(value:bool) -> void:
@@ -103,22 +88,27 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_Left_Player_Detector_body_entered(body):
-	print_debug(self.name + ": " + body.name + " is cached in left!")
-#	get_him_hurt()
-	pass # Replace with function body.
+	if debug:
+		print_debug(self.name + ": " + body.name + " is cached in left!")
+	left_trigger_process()
 
 
 func _on_Right_Player_Detector_body_entered(body):
-	print_debug(self.name + ": " + body.name + " is cached in right!")
-#	get_him_hurt()
-	pass # Replace with function body.
+	if debug:
+		print_debug(self.name + ": " + body.name + " is cached in right!")
+	right_trigger_process()
 
 
 
+func left_trigger_process():
+	pass
+
+func right_trigger_process():
+	pass
 
 
-
-
+func _extends_phys_process():
+	pass
 
 
 

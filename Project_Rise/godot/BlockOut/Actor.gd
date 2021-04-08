@@ -7,6 +7,7 @@ extends KinematicBody2D
 
 export var speed_base = Vector2(216.0, 250.0)
 export var is_moveble = false
+export var is_under_gravity = false
 export var mass = 1
 export var local_speed_md = 1.0
 export var debug = false
@@ -58,3 +59,7 @@ func npc_move_and_slide_to(next_position : Vector2):
 		local_direction = Vector2.LEFT
 	
 	move_and_slide(velocity, FLOOR_NORMAL).y
+
+
+func add_gravity():
+		_velocity.y += pow(gravity,2)

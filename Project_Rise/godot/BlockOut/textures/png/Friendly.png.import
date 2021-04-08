@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Freandly.png-47bae1e9a77d7f9759ea662c0635deac.stex"
+path="res://.import/Friendly.png-784bc4b134d0bfc3dffaafb6b859419b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/png/Freandly.png"
-dest_files=[ "res://.import/Freandly.png-47bae1e9a77d7f9759ea662c0635deac.stex" ]
+source_file="res://textures/png/Friendly.png"
+dest_files=[ "res://.import/Friendly.png-784bc4b134d0bfc3dffaafb6b859419b.stex" ]
 
 [params]
 

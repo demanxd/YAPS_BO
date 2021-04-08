@@ -20,7 +20,6 @@ position = Vector2( 1065.86, -85.1794 )
 collision_mask = 35
 speed_base = Vector2( 220, 5 )
 is_moveble = true
-debug = false
 jump_height = 80
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 3 )]
@@ -33,10 +32,10 @@ remote_path = NodePath("../MainCamera")
 position = Vector2( -138.08, -21.9114 )
 
 [node name="Walker" parent="." instance=ExtResource( 5 )]
-position = Vector2( 396.338, -18.5686 )
+position = Vector2( 279.339, -18.5686 )
 is_moveble = true
 local_speed_md = 0.5
-local_direction = Vector2( -1, 0 )
+local_direction = Vector2( 1, 0 )
 editor_process = false
 waypoints_path = NodePath("../Waypoints")
 
@@ -50,10 +49,11 @@ position = Vector2( 271.144, -8 )
 position = Vector2( 448, -8 )
 
 [node name="Kaban" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1216.23, -8 )
+position = Vector2( 1259.43, -8 )
 is_moveble = true
+local_speed_md = 0.3
 debug = false
-local_direction = Vector2( -1, 0 )
+local_direction = Vector2( 1, 0 )
 editor_process = false
 waypoints_path = NodePath("../Waypoints2")
 
