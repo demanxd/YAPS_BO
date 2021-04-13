@@ -20,13 +20,13 @@ export var local_direction = Vector2.ZERO
 
 const FLOOR_NORMAL = Vector2.UP
 
-var _velocity = Vector2.ZERO
+var _velocity = Vector2(0.0,0.0)
 
 func _ready():
 	speed.x = local_speed_md * speed_base.x
 	speed.y = speed_base.y
 	if debug:
-		print_debug(self.name + " speed = " + String(speed))
+		print_debug(self.name + " speed = " + String(speed) + "  Actor class")
 
 # _physics_process is called after the inherited _physics_process function.
 # This allows the Player and Enemy scenes to be affected by gravity.
@@ -58,8 +58,8 @@ func npc_move_and_slide_to(next_position : Vector2):
 	elif(self.position.x > next_position.x):
 		local_direction = Vector2.LEFT
 	
-	move_and_slide(velocity, FLOOR_NORMAL).y
+	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 
 
 func add_gravity():
-		_velocity.y += pow(gravity,2)
+		_velocity.y += pow(gravity,2.0)

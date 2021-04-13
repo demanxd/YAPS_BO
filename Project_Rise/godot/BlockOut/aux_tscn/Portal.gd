@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 export var In : bool
 export var debug = true
+export var show = true
 export var location_self : Vector2
 export var location_target : Vector2
 export var color_shade : Color
@@ -26,13 +27,17 @@ func _ready():
 			location_self = self.get_parent().get_location_target()
 		else:
 			self.In = false
-		if In:
-			$Sprite_In.show()
-			color_shade = Color(base_color.x,base_color.y,base_color.z)
-			$Sprite_In.modulate = color_shade
+		if show:
+			if In:
+				$Sprite_In.show()
+				color_shade = Color(base_color.x,base_color.y,base_color.z)
+				$Sprite_In.modulate = color_shade
+			else:
+				$Sprite_Out.show()
+				$Sprite_Out.modulate = color_shade
 		else:
-			$Sprite_Out.show()
-			$Sprite_Out.modulate = color_shade
+			$Sprite_In.hide()
+			$Sprite_Out.hide()
 
 
 func _process(delta: float) -> void:
@@ -43,18 +48,22 @@ func _process(delta: float) -> void:
 			location_target = self.get_parent().get_location_target()
 		else:
 			self.In = false
-		if In:
-			$Sprite_Out.hide()
-			$Sprite_In.show()
-#			color_shade = Color(base_color.x,base_color.y,base_color.z)
-			$Sprite_In.modulate = color_shade
+		if show:
+			if In:
+				$Sprite_Out.hide()
+				$Sprite_In.show()
+	#			color_shade = Color(base_color.x,base_color.y,base_color.z)
+				$Sprite_In.modulate = color_shade
+			else:
+				$Sprite_In.hide()
+				$Sprite_Out.show()
+				$Sprite_Out.modulate = color_shade
+				base_color.x = color_shade.r
+				base_color.y = color_shade.g
+				base_color.z = color_shade.b
 		else:
 			$Sprite_In.hide()
-			$Sprite_Out.show()
-			$Sprite_Out.modulate = color_shade
-			base_color.x = color_shade.r
-			base_color.y = color_shade.g
-			base_color.z = color_shade.b
+			$Sprite_Out.hide()
 
 
 func get_color():

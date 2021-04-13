@@ -26,17 +26,11 @@ var target_position: = Vector2()
 func _ready() -> void:
 	waypoints = get_node(waypoints_path)
 	last_local_direction = local_direction
-	if not waypoints:
-		set_physics_process(false)
-		return
+	if waypoints:
+		position = waypoints.get_start_position()
+		target_position = waypoints.get_next_point_position()
+	_extends_phys_process()
 	
-	position = waypoints.get_start_position()
-	target_position = waypoints.get_next_point_position()
-	
-	if debug:
-		print(self.name + ": start position : x = " + String(position.x) + ", y = " + String(position.y))
-		print(self.name + ": next position : x = " + String(target_position.x) + ", y = " + String(target_position.y))
-
 
 func _physics_process(delta: float) -> void:
 #	if debug:
@@ -45,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	if is_moveble:
 		if (self.position.x != target_position.x):
 			npc_move_and_slide_to(target_position)
+		elif _velocity > 0:
+			move_and_slide(_velocity)
 		
 		""" Set a maximum delta between current and next points. 
 		When metrics would done, this *if* wouldn,t be necessary """
@@ -67,13 +63,12 @@ func _physics_process(delta: float) -> void:
 				if not left_p_detect.is_processing():
 					left_p_detect.set_process(true)
 	if is_under_gravity:
-		if debug:
-			print(self.name + ": gravity ok!")
-		add_gravity()
-	else:
-		if debug:
-			print(self.name + ": gravity not ok!")
-#	self._extends_phys_process()
+		if not is_on_floor():
+			add_gravity()
+			if debug:
+				print(self.name + ": _velocity = " + String(_velocity))
+		elif self._velocity.y != 0:
+			self._velocity.y = 0
 
 
 func set_editor_process(value:bool) -> void:
@@ -108,7 +103,7 @@ func right_trigger_process():
 
 
 func _extends_phys_process():
-	pass
+	print(self.name + ": extends phys process")
 
 
 

@@ -25,6 +25,7 @@ texture = ExtResource( 2 )
 visible = false
 enabled = true
 cast_to = Vector2( 0, 18 )
+collide_with_areas = true
 
 [node name="Floor_Detector_Right" type="RayCast2D" parent="."]
 visible = false
@@ -58,3 +59,5 @@ collision_layer = 8
 shape = SubResource( 3 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
+[connection signal="body_entered" from="Left_Player_Detector" to="." method="_on_Left_Player_Detector_body_entered"]
+[connection signal="body_entered" from="Right_Player_Detector" to="." method="_on_Right_Player_Detector_body_entered"]
