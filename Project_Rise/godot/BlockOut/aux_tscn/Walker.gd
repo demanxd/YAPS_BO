@@ -39,8 +39,6 @@ func _physics_process(delta: float) -> void:
 	if is_moveble:
 		if (self.position.x != target_position.x):
 			npc_move_and_slide_to(target_position)
-		elif _velocity > 0:
-			move_and_slide(_velocity)
 		
 		""" Set a maximum delta between current and next points. 
 		When metrics would done, this *if* wouldn,t be necessary """
@@ -68,7 +66,7 @@ func _physics_process(delta: float) -> void:
 			if debug:
 				print(self.name + ": _velocity = " + String(_velocity))
 		elif self._velocity.y != 0:
-			self._velocity.y = 0
+			_velocity.y -= local_MJD
 
 
 func set_editor_process(value:bool) -> void:

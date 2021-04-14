@@ -8,7 +8,6 @@ const FLOOR_DETECT_DISTANCE = 20.0
 export var MAX_JUMP_DISTANCE = 0
 export var local_gravity = 1 #delete later
 var in_jump = false
-onready var local_MJD
 
 export(String) var action_suffix = ""
 
@@ -22,8 +21,7 @@ var max_h = 0.0 #delete!!!
 
 
 func _ready():
-	local_MJD = jump_height * gravity
-#	pass
+	pass
 
 
 # Physics process is a built-in loop in Godot.
@@ -60,9 +58,6 @@ func _physics_process(_delta):
 		
 		if (direction.y):
 			_velocity.y -= local_MJD
-		
-		if (-_velocity.y >= max_h):
-			max_h = -_velocity.y
 		
 		if debug:
 			print(self.name + ": velocity y = " + String(-_velocity.y))

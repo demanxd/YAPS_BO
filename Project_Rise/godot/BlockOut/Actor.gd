@@ -15,6 +15,7 @@ export var jump_height = 100
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity")
 onready var speed = Vector2.ZERO
 export var local_direction = Vector2.ZERO
+onready var local_MJD
 
 
 
@@ -25,6 +26,7 @@ var _velocity = Vector2(0.0,0.0)
 func _ready():
 	speed.x = local_speed_md * speed_base.x
 	speed.y = speed_base.y
+	local_MJD = jump_height * gravity
 	if debug:
 		print_debug(self.name + " speed = " + String(speed) + "  Actor class")
 
