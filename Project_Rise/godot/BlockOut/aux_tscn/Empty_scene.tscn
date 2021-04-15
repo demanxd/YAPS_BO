@@ -40,7 +40,10 @@ editor_process = false
 waypoints_path = NodePath("../Waypoints")
 
 [node name="Waypoints" parent="." instance=ExtResource( 6 )]
+editor_process = true
+line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
 line_width = 5.0
+triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints"]
 position = Vector2( 271.144, -8 )
@@ -58,7 +61,10 @@ editor_process = false
 waypoints_path = NodePath("../Waypoints2")
 
 [node name="Waypoints2" parent="." instance=ExtResource( 6 )]
+editor_process = true
+line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
 line_width = 5.0
+triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints2"]
 position = Vector2( 1140.63, -8 )

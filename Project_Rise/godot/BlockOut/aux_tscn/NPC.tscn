@@ -4,8 +4,8 @@
 [ext_resource path="res://textures/png/Neutral.png" type="Texture" id=2]
 [ext_resource path="res://aux_tscn/Hurtbox.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.02778, 17.5133 )
+[sub_resource type="CapsuleShape2D" id=1]
+height = 16.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 4, 10 )
@@ -15,7 +15,6 @@ extents = Vector2( 4, 10 )
 
 [node name="NPC" type="KinematicBody2D"]
 collision_layer = 8
-motion/sync_to_physics = true
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

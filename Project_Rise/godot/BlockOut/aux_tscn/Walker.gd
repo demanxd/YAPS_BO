@@ -37,36 +37,37 @@ func _physics_process(delta: float) -> void:
 #		if !platform_detector.collide_with_bodies:
 #			print_debug("Warning! " + self.name + " cannot collide with bodies!")
 	if is_moveble:
-		if (self.position.x != target_position.x):
-			npc_move_and_slide_to(target_position)
-		
-		""" Set a maximum delta between current and next points. 
-		When metrics would done, this *if* wouldn,t be necessary """
-		
-		if (abs(self.position.x - target_position.x)) <= 4:
-			if debug:
-				print_debug(self.name + ": getting a new point")
-			target_position = waypoints.get_next_point_position()
-			if debug:
-				print(self.name + ": next point: " + String(target_position))
-		if (last_local_direction != local_direction):
-			if (local_direction == Vector2.RIGHT):
-				if left_p_detect.is_processing():
-					left_p_detect.set_process(false)
-				if not right_p_detect.is_processing():
-					right_p_detect.set_process(true)
-			else:
-				if right_p_detect.is_processing():
-					right_p_detect.set_process(false)
-				if not left_p_detect.is_processing():
-					left_p_detect.set_process(true)
+		if waypoints:
+			if (self.position.x != target_position.x):
+				npc_move_and_slide_to(target_position)
+			
+			""" Set a maximum delta between current and next points. 
+			When metrics would done, this *if* wouldn,t be necessary """
+			
+			if (abs(self.position.x - target_position.x)) <= 4:
+				if debug:
+					print_debug(self.name + ": getting a new point")
+				target_position = waypoints.get_next_point_position()
+				if debug:
+					print(self.name + ": next point: " + String(target_position))
+			if (last_local_direction != local_direction):
+				if (local_direction == Vector2.RIGHT):
+					if left_p_detect.is_processing():
+						left_p_detect.set_process(false)
+					if not right_p_detect.is_processing():
+						right_p_detect.set_process(true)
+				else:
+					if right_p_detect.is_processing():
+						right_p_detect.set_process(false)
+					if not left_p_detect.is_processing():
+						left_p_detect.set_process(true)
+		else:
+			npc_move_and_slide_to(self.position)
 	if is_under_gravity:
 		if not is_on_floor():
 			add_gravity()
-			if debug:
-				print(self.name + ": _velocity = " + String(_velocity))
 		elif self._velocity.y != 0:
-			_velocity.y -= local_MJD
+			_velocity.y = 0
 
 
 func set_editor_process(value:bool) -> void:

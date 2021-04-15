@@ -50,9 +50,9 @@ func set_local_speed_md(modificator : float):
 
 func npc_move_and_slide_to(next_position : Vector2):
 	var velocity = _velocity
-	if(self.position.x <= next_position.x):
+	if(self.position.x < next_position.x):
 		velocity.x = speed.x
-	elif(self.position.x >= next_position.x):
+	elif(self.position.x > next_position.x):
 		velocity.x = -speed.x
 	
 	if(self.position.x < next_position.x):
@@ -64,4 +64,4 @@ func npc_move_and_slide_to(next_position : Vector2):
 
 
 func add_gravity():
-		_velocity.y += pow(gravity,2.0)
+		_velocity.y += pow(gravity,2)

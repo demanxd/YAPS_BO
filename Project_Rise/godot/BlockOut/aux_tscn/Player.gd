@@ -50,9 +50,7 @@ func _physics_process(_delta):
 		
 		_velocity = calculate_move_velocity(_velocity, direction, speed)
 	
-#		var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if direction.y == 0.0 else Vector2.ZERO
 		var is_on_platform = is_on_floor()
-#		jump(true) #if direction.y == 1 else false)
 		
 		add_gravity()
 		
@@ -61,30 +59,13 @@ func _physics_process(_delta):
 		
 		if debug:
 			print(self.name + ": velocity y = " + String(-_velocity.y))
-#			if direction.y == 1:
-#				print(String(direction.x) + "; " + String(direction.y))
-
+		
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			if collision.collider.has_method("collide_with"):
 				collision.collider.collide_with(collision, self)
 
-
-func jump(dir_y) -> void:
-#	if self.is_on_floor() or in_jump:
-#	if dir_y:#Input.is_action_just_pressed("jump" + action_suffix):
-#		in_jump = true
-#		_velocity.y -= speed.y
-#	if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
-#		_velocity.y -= _velocity.y * gravity
-#		if _velocity.y <= -MAX_JUMP_DISTANCE:
-#			in_jump = false
-#	elif not in_jump:
-#		_velocity.y += _velocity.y * gravity
-#	else:
-#		_velocity.y = 0
-	_velocity.y += MAX_JUMP_DISTANCE
 
 
 func get_direction():
@@ -106,23 +87,6 @@ func calculate_move_velocity(
 ):
 	var velocity = linear_velocity
 	velocity.x = speed.x * direction.x
-#	if direction.y != 0.0:
-#		velocity.y = speed.y * direction.y
-#	if is_jump_interrupted:
-#		# Decrease the Y velocity by multiplying it, but don't set it to 0
-#		# as to not be too abrupt.
-#		velocity.y *= 0.4
-#	if direction.y:
-#		in_jump = true
-#	if in_jump:
-#		if _velocity.y >= -MAX_JUMP_DISTANCE and in_jump:
-#			_velocity.y -= speed.y * gravity
-#			if _velocity.y <= -MAX_JUMP_DISTANCE:
-#				in_jump = false
-#	elif not in_jump:
-#		_velocity.y += speed.y * gravity
-#	else:
-#		_velocity.y = 0
 	
 	return velocity
 

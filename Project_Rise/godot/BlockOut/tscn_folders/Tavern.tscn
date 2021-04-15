@@ -18,9 +18,10 @@ position = Vector2( 377.741, 314.487 )
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4212.01, -83.4382 )
+position = Vector2( 4214, -70 )
 is_moveble = true
 debug = false
+jump_height = 80
 
 [node name="MainCamera" parent="Player" instance=ExtResource( 6 )]
 current = true
