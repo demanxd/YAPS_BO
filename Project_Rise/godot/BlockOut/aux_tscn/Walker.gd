@@ -95,14 +95,25 @@ func _on_Right_Player_Detector_body_entered(body):
 
 
 func left_trigger_process():
+	_extends_left_trig_process()
 	pass
 
 func right_trigger_process():
+	_extends_right_trig_process()
 	pass
 
 
 func _extends_phys_process():
-	print(self.name + ": extends phys process")
+	if debug:
+		print(self.name + ": extends_phys doesn't define")
+
+func _extends_left_trig_process():
+	if debug:
+		print(self.name + ": left_trigger doesn't define")
+
+func _extends_right_trig_process():
+	if debug:
+		print(self.name + ": right_trigger doesn't define")
 
 
 
