@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="YAPS Block Out"
-run/main_scene="res://tscn_folders/Tavern.tscn"
+run/main_scene="res://tscn_folders/GUI.tscn"
 config/icon="res://icon.png"
 
 [display]

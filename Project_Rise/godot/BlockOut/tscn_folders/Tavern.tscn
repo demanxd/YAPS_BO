@@ -18,7 +18,7 @@ position = Vector2( 377.741, 314.487 )
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 4202, -70 )
+position = Vector2( 208, 200.814 )
 is_moveble = true
 debug = false
 jump_height = 80
