@@ -28,4 +28,13 @@ text = "press to start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = -30.0
+margin_top = 14.0
+margin_right = 28.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://aux_tscn/Rock_TM.tscn" type="PackedScene" id=1]
 [ext_resource path="res://aux_tscn/Grass_TM.tscn" type="PackedScene" id=2]
@@ -9,8 +9,10 @@
 [ext_resource path="res://aux_tscn/Kaban.tscn" type="PackedScene" id=7]
 [ext_resource path="res://aux_tscn/Waypoints.tscn" type="PackedScene" id=8]
 [ext_resource path="res://aux_tscn/NPC.tscn" type="PackedScene" id=9]
+[ext_resource path="res://tscn_folders/Tavern.gd" type="Script" id=10]
 
 [node name="Tavern" type="Node"]
+script = ExtResource( 10 )
 
 [node name="Background" type="Sprite" parent="."]
 visible = false
@@ -18,7 +20,7 @@ position = Vector2( 377.741, 314.487 )
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 208, 200.814 )
+position = Vector2( 226, 232 )
 is_moveble = true
 debug = false
 jump_height = 80
