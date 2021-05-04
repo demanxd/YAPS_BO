@@ -255,10 +255,6 @@ local_direction = Vector2( 1, 0 )
 waypoints_path = NodePath("../Waypoints_K1")
 
 [node name="Waypoints_K1" parent="." instance=ExtResource( 8 )]
-editor_process = true
-line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
-line_width = 10.0
-triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints_K1"]
 position = Vector2( 3747.95, -61.487 )
@@ -277,10 +273,6 @@ waypoints_path = NodePath("../Waypoints_K2")
 
 [node name="Waypoints_K2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 255.633, -3.36359 )
-editor_process = true
-line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
-line_width = 10.0
-triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints_K2"]
 position = Vector2( 3727.75, -57.7072 )
@@ -299,10 +291,6 @@ waypoints_path = NodePath("../Waypoints_K3")
 
 [node name="Waypoints_K3" parent="." instance=ExtResource( 8 )]
 position = Vector2( 120.248, 7.56808 )
-editor_process = true
-line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
-line_width = 10.0
-triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints_K3"]
 position = Vector2( 3759.92, -67.1566 )
@@ -321,10 +309,6 @@ waypoints_path = NodePath("../Waypoints_K4")
 
 [node name="Waypoints_K4" parent="." instance=ExtResource( 8 )]
 position = Vector2( 375.881, 4.2045 )
-editor_process = true
-line_color = Color( 0.228943, 0.710254, 0.945312, 1 )
-line_width = 10.0
-triangle_color = Color( 0.722656, 0.908997, 1, 1 )
 
 [node name="Position2D" type="Position2D" parent="Waypoints_K4"]
 position = Vector2( 3715.29, -60.857 )
