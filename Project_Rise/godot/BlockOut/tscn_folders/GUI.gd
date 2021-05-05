@@ -12,10 +12,10 @@ func _ready():
 
 func _on_Button_button_down():
 #	root.start_game()
-	var num = lineEdit.text.to_int()
-	if num == 0:
+	var num = lineEdit.text
+	if num == "0":
 		get_tree().change_scene("res://tscn_folders/Tavern.tscn")
-	if num == 1:
+	if num == "000":
 		get_tree().change_scene("res://aux_tscn/Empty_scene.tscn")
 	else:
 		print("Wrong number!")

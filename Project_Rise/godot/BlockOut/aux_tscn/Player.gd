@@ -15,6 +15,7 @@ onready var platform_detector = $PlatformDetector
 onready var sprite = $Sprite
 onready var camera = $Camera2D
 onready var timer = $Timer
+onready var hitbox = $Hitbox
 
 
 var max_h = 0.0 #delete!!!
@@ -57,14 +58,19 @@ func _physics_process(_delta):
 		if (direction.y):
 			_velocity.y -= local_MJD
 		
-		if debug:
-			print(self.name + ": velocity y = " + String(-_velocity.y))
+#		if debug:
+#			print(self.name + ": velocity y = " + String(-_velocity.y))
 		
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			if collision.collider.has_method("collide_with"):
 				collision.collider.collide_with(collision, self)
+	
+#	hitbox.enable
+	
+	if Input.is_action_just_pressed("atack"):
+		pass
 
 
 
