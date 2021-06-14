@@ -22,4 +22,4 @@ func _on_Button_button_down():
 	if num == String(lvls.TEST_LVL):
 		get_tree().change_scene("res://aux_tscn/Empty_scene.tscn")
 	else:
-		print("Wrong number! You can input only " + String(lvls) + " lvl's")
+		print("Wrong input! You can input only " + String(lvls) + " lvl's")
