@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Character_v1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://texture/idle_anim_8_file.png" type="Texture" id=3]
+[ext_resource path="res://texture/idle_anim_9_file.png" type="Texture" id=4]
+[ext_resource path="res://texture/idle_anim_4_file.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Новая анимация"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Новая анимация"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Новая анимация"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Room" type="Node2D"]
+
+[node name="Character_v4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 60, 0 )
+
+[node name="Sprite" parent="Character_v4" index="0"]
+texture = ExtResource( 5 )
+
+[node name="AnimationPlayer" parent="Character_v4" index="1"]
+"anims/Новая анимация" = SubResource( 1 )
+
+[node name="Label4" type="Label" parent="Character_v4"]
+margin_left = -22.5
+margin_top = -69.9355
+margin_right = 17.5
+margin_bottom = -55.9355
+rect_pivot_offset = Vector2( -74.3846, 8.72664 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character_v5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 60, 0 )
+
+[node name="Sprite" parent="Character_v5" index="0"]
+position = Vector2( -124.593, 0 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" parent="Character_v5" index="1"]
+"anims/Новая анимация" = SubResource( 2 )
+
+[node name="Label4" type="Label" parent="Character_v5"]
+margin_left = -22.5
+margin_top = -69.9355
+margin_right = 17.5
+margin_bottom = -55.9355
+rect_pivot_offset = Vector2( -74.3846, 8.72664 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Character_v6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 60, 0 )
+
+[node name="Sprite" parent="Character_v6" index="0"]
+position = Vector2( -189.134, 0 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" parent="Character_v6" index="1"]
+"anims/Новая анимация" = SubResource( 3 )
+
+[node name="Label4" type="Label" parent="Character_v6"]
+margin_left = -22.5
+margin_top = -69.9355
+margin_right = 17.5
+margin_bottom = -55.9355
+rect_pivot_offset = Vector2( -74.3846, 8.72664 )
+text = "D"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -150, -100 )
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2( 150, 100 )
+
+[editable path="Character_v4"]
+[editable path="Character_v5"]
+[editable path="Character_v6"]
+[editable path="Camera2D"]
