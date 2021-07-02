@@ -4,6 +4,8 @@ extends Actor
 #https://vk.com/wall-165072537_2325
 #movement speed 12 units per second
 
+onready var aux = "res://aux_funcs.gd"
+
 const FLOOR_DETECT_DISTANCE = 20.0
 export var MAX_JUMP_DISTANCE = 0
 export var local_gravity = 1 #delete later
@@ -70,7 +72,9 @@ func _physics_process(_delta):
 #	hitbox.enable
 	
 	if Input.is_action_just_pressed("atack"):
+		aux.get_time()
 		pass
+	
 
 
 
