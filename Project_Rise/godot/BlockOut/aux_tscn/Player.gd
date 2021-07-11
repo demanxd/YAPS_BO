@@ -19,6 +19,9 @@ onready var camera = $Camera2D
 onready var timer = $Timer
 onready var hitbox = $Hitbox
 
+onready var animationPlayer = $AnimationPlayer
+onready var animationTree = $AnimationTree
+
 
 var max_h = 0.0 #delete!!!
 
@@ -46,7 +49,7 @@ func _ready():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
-	
+	animationPlayer.play("Idle")
 	if is_moveble:
 		
 		var direction = get_direction()
